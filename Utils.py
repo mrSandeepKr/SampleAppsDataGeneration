@@ -9,7 +9,7 @@ def pause(dur):
 def close_card():
     tries_left = 4
     while(tries_left >  0):
-        cross = gui.locateOnScreen('cross.PNG')
+        cross = gui.locateOnScreen('images\cross.PNG')
         if(cross != None):
             gui.moveTo(cross)
             gui.leftClick()
@@ -41,6 +41,12 @@ def move_screen_centre():
     gui.moveTo(w/2,h/2,1)
     return
 
+def right_side_click():   
+    sz = gui.size()
+    gui.moveTo(9.5*sz.width/10,9*sz.height/10)
+    gui.leftClick()
+    gui.leftClick()
+
 def scrolldown():
     move_screen_centre()
     print('scrolling..')
@@ -49,40 +55,45 @@ def scrolldown():
 def checkandScroll():
     move_screen_centre()
     time.sleep(1)
-    gui.screenshot().save('prior.PNG')
+    gui.screenshot().save('images/prior.PNG')
 
     scrolldown()
     time.sleep(1)
 
-    gui.screenshot().save('post.PNG')
+    gui.screenshot().save('images/post.PNG')
 
-    x = cv2.imread('prior.PNG') 
-    y = cv2.imread('post.PNG') 
+    x = cv2.imread('images/prior.PNG') 
+    y = cv2.imread('images/post.PNG') 
     
     if(np.subtract(x,y).any() == False):
-        print('scrolling back to the top as no room to scroll')
+        print('Attempting to create a CustomApp as no room to scroll. Will go back to top then')
         return 0
     
     return 1
 
+def scrollToTop():
+    for i in range (20):
+        gui.scroll(1000)
+        pause(0.3)
+
 def check_view_for_customapp(appList):
     move_screen_centre()
     
-    poll = test_card(gui.locateOnScreen('poll.PNG'))
+    poll = test_card(gui.locateOnScreen('images\CardButton\poll.PNG'))
     if( poll== 0):
         return
     elif(poll == 1) :
         appList['poll']+=1
         appList['total']+=1
 
-    checklist = test_card(gui.locateOnScreen('checklist.PNG'))
+    checklist = test_card(gui.locateOnScreen('images\CardButton\checklist.PNG'))
     if(checklist == 0):
         return
     elif(checklist == 1) :
         appList['checklist']+=1
         appList['total']+=1
 
-    survey = test_card(gui.locateOnScreen('survey.PNG'))
+    survey = test_card(gui.locateOnScreen('images\CardButton\survey.PNG'))
     if(survey == 0):
         return
     elif(survey == 1) :

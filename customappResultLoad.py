@@ -3,14 +3,16 @@ import time
 import cv2
 import numpy as np
 from Utils import *
+from AppCreation import *
 
 def main():
-    scrollcount= 5000
+    scrollcount= 10
     appList = {}
     appList['poll']=0
     appList['survey']=0
     appList['checklist']=0
     appList['total']=0
+    appCreationCounter=0
 
     while(scrollcount>0):    
         scrollcount-=1
@@ -20,8 +22,9 @@ def main():
         print(appList)
 
         if(checkandScroll() == 0):
-            for i in range (20):
-                gui.scroll(1000)
-                time.sleep(0.3)
+            appCreationCounter+=1
+            pollApp()
+
+            scrollToTop()
             
 main()
