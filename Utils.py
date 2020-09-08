@@ -65,29 +65,26 @@ def checkandScroll():
     
     return 1
 
-def check_view_for_customapp():
+def check_view_for_customapp(appList):
     move_screen_centre()
     
     poll = test_card(gui.locateOnScreen('poll.PNG'))
     if( poll== 0):
         return
     elif(poll == 1) :
-        print('poll found')
-    else :
-        print('poll not found')
+        appList['poll']+=1
+        appList['total']+=1
 
     checklist = test_card(gui.locateOnScreen('checklist.PNG'))
     if(checklist == 0):
         return
     elif(checklist == 1) :
-        print('checklist found')
-    else :
-        print('checklist  not found')
+        appList['checklist']+=1
+        appList['total']+=1
 
     survey = test_card(gui.locateOnScreen('survey.PNG'))
     if(survey == 0):
         return
     elif(survey == 1) :
-        print('survey found')
-    else :
-        print('survey  not found')
+        appList['survey']+=1
+        appList['total']+=1
