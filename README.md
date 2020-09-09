@@ -1,6 +1,6 @@
 # SampleAppsDataGeneration
 
-git clone https://github.com/mrSandeepKr/SampleAppsDataGeneration/edit/master/README.md
+git clone https://github.com/mrSandeepKr/SampleAppsDataGeneration
 
 # Install modules
 
