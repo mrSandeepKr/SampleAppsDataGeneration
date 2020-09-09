@@ -43,13 +43,12 @@ def move_screen_centre():
 
 def right_side_click():   
     sz = gui.size()
-    gui.moveTo(9.5*sz.width/10,9*sz.height/10)
+    gui.moveTo(9.5*sz.width/10,9*sz.height/10,2)
     gui.leftClick()
     gui.leftClick()
 
 def scrolldown():
     move_screen_centre()
-    print('scrolling..')
     gui.scroll(-200)
 
 def checkandScroll():
@@ -75,6 +74,10 @@ def scrollToTop():
     for i in range (20):
         gui.scroll(1000)
         pause(0.3)
+    
+def moveAndClick(location):
+    gui.moveTo(location)
+    gui.leftClick()
 
 def check_view_for_customapp(appList):
     move_screen_centre()
