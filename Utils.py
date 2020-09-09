@@ -43,7 +43,7 @@ def move_screen_centre():
 
 def right_side_click():   
     sz = gui.size()
-    gui.moveTo(9.5*sz.width/10,5*sz.height/10,1)
+    gui.moveTo(9.5*(sz.width/10),5*sz.height/10,0.5)
     gui.leftClick()
     pause(0.5)
     gui.leftClick()

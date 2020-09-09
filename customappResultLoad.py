@@ -6,6 +6,8 @@ from Utils import *
 from AppCreation import *
 
 def main():
+    move_screen_centre()
+    right_side_click()
     scrollcount= 5000
     appList = {}
     appList['poll']=0
@@ -22,9 +24,10 @@ def main():
         print(appList)
 
         if(checkandScroll() == 0):
-            appCreationCounter+=1
-            pollApp()
-            
+            appCreationCounter+=pollApp()
+            appCreationCounter+=checklistApp()
+            appCreationCounter+=surveyApp()
+            print("number of apps created: "+str(appCreationCounter))
             scrollToTop()
             
 main()

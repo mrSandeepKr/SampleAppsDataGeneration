@@ -27,6 +27,7 @@ def openAppPanel():
 
     gui.moveTo(trippleDot)
     gui.leftClick()
+    return 1
 
 def pollApp():
     if(openAppPanel()==False):
@@ -227,5 +228,3 @@ def checklistApp():
     moveAndClick(sendButton)
     pause(PAUSE_POST_SEND)
     return 1
-
-checklistApp()
