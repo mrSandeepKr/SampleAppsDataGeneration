@@ -2,7 +2,8 @@ import pyautogui as gui
 from Utils import *
 
 PAUSE_FOR_CREATION_VIEW_POLL = 5
-PAUSE_FOR_CREATION_VIEW_SURVEY = 6
+PAUSE_FOR_CREATION_VIEW_SURVEY = 5
+PAUSE_FOR_CREATION_VIEW_CHECKLIST = 5
 PAUSE_POST_SEND  = 5
 PAUSE_AFTER_CLICKING_NEXT = 3
 
@@ -168,3 +169,63 @@ def surveyApp():
     moveAndClick(sendButton)
     pause(PAUSE_POST_SEND)
     return 1
+
+def checklistApp():
+    move_screen_centre()
+    openAppPanel()
+
+    checklistApp = gui.locateOnScreen('images/AppIcon/checklist.PNG')
+    if(checklistApp==None):
+        print('couldnt find the checklist icon')
+        return 0
+        
+    moveAndClick(checklistApp)
+    pause(PAUSE_FOR_CREATION_VIEW_CHECKLIST)
+
+    #need to add a while statement to make this work
+    #incase the things not loaded in 5 secs on  just make it click on the cross 
+
+    nameYourChecklist = gui.locateOnScreen('images/Checklist/nameYourChecklist.PNG')
+    if(nameYourChecklist == None):
+        print('cant find \"Name your checklist\"')
+        close_card()
+        return 0
+
+    moveAndClick(nameYourChecklist)
+    gui.write('Automated checklist',interval = 0.05)
+
+    firstBox = gui.locateOnScreen('images/Checklist/firstBox.PNG')
+    if(firstBox == None):
+        print('cant find the first box')
+        close_card()
+        return 0
+    moveAndClick(firstBox)
+    gui.write('item 1',0.03)
+
+    for i in range(2,5):
+        addItem = gui.locateOnScreen('images/Checklist/addItem.PNG')
+        if(addItem == None):
+            break
+        moveAndClick(addItem)
+        gui.write('item '+str(i),0.03)
+    
+    nextButton = gui.locateOnScreen('images/Checklist/next.PNG')
+    if(nextButton == None):
+        print('cant find Next')
+        close_card()
+        return 0
+
+    moveAndClick(nextButton)
+    pause(PAUSE_AFTER_CLICKING_NEXT)
+
+    sendButton = gui.locateOnScreen('images/send.PNG')
+    if(sendButton == None):
+        print('cant find the send button')
+        close_card()
+        return 0
+    
+    moveAndClick(sendButton)
+    pause(PAUSE_POST_SEND)
+    return 1
+
+checklistApp()

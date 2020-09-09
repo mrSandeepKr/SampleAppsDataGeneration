@@ -6,7 +6,7 @@ from Utils import *
 from AppCreation import *
 
 def main():
-    scrollcount= 10
+    scrollcount= 5000
     appList = {}
     appList['poll']=0
     appList['survey']=0
@@ -24,7 +24,7 @@ def main():
         if(checkandScroll() == 0):
             appCreationCounter+=1
             pollApp()
-
+            
             scrollToTop()
             
 main()
