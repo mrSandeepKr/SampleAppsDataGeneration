@@ -6,10 +6,28 @@ PAUSE_FOR_CREATION_VIEW_SURVEY = 5
 PAUSE_FOR_CREATION_VIEW_CHECKLIST = 5
 PAUSE_POST_SEND  = 5
 PAUSE_AFTER_CLICKING_NEXT = 3
+PAUSE_AFTER_CLICKING_TRIPPLE_DOT=2
+
+def ClickTrippleDot():
+    dotList = gui.locateAllOnScreen('images/trippleDot.PNG')
+    if(dotList == None):
+        return 0
+    
+    dotList = list(dotList)
+    maxDepth = 0
+    trippleDot= None
+    for i in dotList:
+        if(maxDepth < i.top):
+            maxDepth = i.top
+            trippleDot = i
+    
+    gui.moveTo(trippleDot)
+    gui.leftClick()
+    return 1
 
 def openAppPanel():
     right_side_click()
-    pause(0.8)
+    pause(1)
 
     newConversation = gui.locateOnScreen('images/newConversation.PNG')
     if(newConversation==None):
@@ -18,15 +36,13 @@ def openAppPanel():
 
     gui.moveTo(newConversation)
     gui.leftClick()
+    pause(1)
 
-    trippleDot = gui.locateOnScreen('images/trippleDot.PNG')
-
-    if(trippleDot==None):
-        print('couldnt find the tripple dot')
+    if(ClickTrippleDot() == False):
+        print('cant find tripple dot')
         return 0
 
-    gui.moveTo(trippleDot)
-    gui.leftClick()
+    pause(PAUSE_AFTER_CLICKING_TRIPPLE_DOT)
     return 1
 
 def pollApp():
@@ -91,7 +107,8 @@ def pollApp():
 
 def surveyApp():
     move_screen_centre()
-    openAppPanel()
+    if(openAppPanel()==False):
+        return 0
 
     surveyApp = gui.locateOnScreen('images/AppIcon/survey.PNG')
     if(surveyApp==None):
@@ -173,7 +190,8 @@ def surveyApp():
 
 def checklistApp():
     move_screen_centre()
-    openAppPanel()
+    if(openAppPanel()==False):
+        return 0
 
     checklistApp = gui.locateOnScreen('images/AppIcon/checklist.PNG')
     if(checklistApp==None):

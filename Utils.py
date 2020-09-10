@@ -74,8 +74,8 @@ def checkandScroll():
     
     return 1
 
-def scrollToTop():
-    for i in range (20):
+def scrollToTop(SCROLL_UP_PARAM):
+    for i in range (SCROLL_UP_PARAM):
         gui.scroll(1000)
         pause(0.3)
     

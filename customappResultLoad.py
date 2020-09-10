@@ -15,6 +15,7 @@ def main():
     appList['checklist']=0
     appList['total']=0
     appCreationCounter=0
+    SCROLL_UP_PARAM = 2
 
     while(scrollcount>0):    
         scrollcount-=1
@@ -27,7 +28,8 @@ def main():
             appCreationCounter+=pollApp()
             appCreationCounter+=checklistApp()
             appCreationCounter+=surveyApp()
+            right_side_click()
             print("number of apps created: "+str(appCreationCounter))
-            scrollToTop()
+            scrollToTop(SCROLL_UP_PARAM)
             
 main()
