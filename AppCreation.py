@@ -8,58 +8,22 @@ PAUSE_POST_SEND  = 5
 PAUSE_AFTER_CLICKING_NEXT = 3
 PAUSE_AFTER_CLICKING_TRIPPLE_DOT=2
 
-def ClickTrippleDot():
-    dotList = gui.locateAllOnScreen('images/trippleDot.PNG')
-    if(dotList == None):
-        return 0
-    
-    dotList = list(dotList)
-    maxDepth = 0
-    trippleDot= None
-    for i in dotList:
-        if(maxDepth < i.top):
-            maxDepth = i.top
-            trippleDot = i
-    
-    gui.moveTo(trippleDot)
-    gui.leftClick()
-    return 1
-
-def openAppPanel():
-    right_side_click()
-    pause(1)
-
-    newConversation = gui.locateOnScreen('images/newConversation.PNG')
-    if(newConversation==None):
-        print('cant find New conversation')
-        return 0
-
-    gui.moveTo(newConversation)
-    gui.leftClick()
-    pause(1)
-
-    if(ClickTrippleDot() == False):
-        print('cant find tripple dot')
-        return 0
-
-    pause(PAUSE_AFTER_CLICKING_TRIPPLE_DOT)
-    return 1
 
 def pollApp():
-    if(openAppPanel()==False):
-        return 0
-
+    pause(3)
     pollApp = gui.locateOnScreen('images/AppIcon/poll.PNG')
     if(pollApp==None):
         print('couldnt find the poll icon')
         return 0
         
     gui.moveTo(pollApp)
+    pause(1)
     gui.leftClick()
     pause(PAUSE_FOR_CREATION_VIEW_POLL)
 
     #need to add a while statement to make this work
-    #incase the things not loaded in 5 secs on  just make it click on the cross 
+    #incase the things not loaded in 5 secs on  j
+    # ust make it click on the cross 
     enter = gui.locateOnScreen('images/Poll/enterQuestion.PNG')
     if(enter == None):
         print('cant find \"Enter poll question \"')
@@ -91,6 +55,14 @@ def pollApp():
         close_card()
         return 0
     moveAndClick(nextButton)
+
+    gui.write('choice1')
+
+    moveAndClick(nextButton)
+
+    gui.write('choice2');   
+
+    moveAndClick(nextButton) 
     
     pause(PAUSE_AFTER_CLICKING_NEXT)
 
@@ -106,9 +78,8 @@ def pollApp():
     return 1
 
 def surveyApp():
-    move_screen_centre()
-    if(openAppPanel()==False):
-        return 0
+    pause(3)
+    right_side_click()
 
     surveyApp = gui.locateOnScreen('images/AppIcon/survey.PNG')
     if(surveyApp==None):
@@ -139,13 +110,6 @@ def surveyApp():
     moveAndClick(addQuestionButton)
     pause(1)
 
-    enterQuestion = gui.locateOnScreen('images/Survey/enterQuestion.PNG')
-    if(enterQuestion == None):
-        print('cant find \" Add your Question \"')
-        close_card()
-        return 0
-    
-    moveAndClick(enterQuestion)
     gui.write('can you see the icon on this survey?' , interval=0.05)
     
     choice = gui.locateAllOnScreen('images/Survey/enterChoice.PNG')
@@ -189,9 +153,8 @@ def surveyApp():
     return 1
 
 def checklistApp():
-    move_screen_centre()
-    if(openAppPanel()==False):
-        return 0
+    pause(3)
+    right_side_click()
 
     checklistApp = gui.locateOnScreen('images/AppIcon/checklist.PNG')
     if(checklistApp==None):
@@ -246,3 +209,6 @@ def checklistApp():
     moveAndClick(sendButton)
     pause(PAUSE_POST_SEND)
     return 1
+
+
+

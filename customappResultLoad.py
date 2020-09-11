@@ -6,6 +6,7 @@ from Utils import *
 from AppCreation import *
 
 def main():
+    pause(3)
     move_screen_centre()
     right_side_click()
     scrollcount= 5000
@@ -15,7 +16,7 @@ def main():
     appList['checklist']=0
     appList['total']=0
     appCreationCounter=0
-    SCROLL_UP_PARAM = 2
+    SCROLL_UP_PARAM = 8
 
     while(scrollcount>0):    
         scrollcount-=1
