@@ -1,6 +1,7 @@
 # Requirement 
 Python3.8 or above is preferable (wont work on python 2)<br>
 Edge browser - optional
+Use R3.9 ring
 
 # SampleAppsDataGeneration
 git clone https://github.com/mrSandeepKr/SampleAppsDataGeneration
